@@ -7,8 +7,16 @@ browser and device specific information (such as the problems and solution only 
 information regarding specific DE's development environments such as virtual dialogue and agillic (and maybe selligent in the future)
 
 ### Gmail
-#### Gmail targeting 
+#### Gmail targeting
 #### Noteworthy
+Gmail for mobile and web is notorius for being difficult to work with because of Googles strict rules for which atributes is allow and not allowed.
+
+Gmail does read style tags, if certain criterias are met:
+*
+*
+*
+
+
 ### Outlook
 #### Noteworthy
 #### Padding Issues
