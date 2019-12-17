@@ -1,8 +1,8 @@
 # email_dev
 A collection of useful information and code for email development
 
-[Gmail](#Gmail)  ---  [Outlook](#outlook) ---  [Agillic](#agillic) ---  [Visual Dialogue](#visual-dialogue) [Gene
-]() 
+[Gmail](#Gmail)  ---  [Outlook](#outlook) ---  [Agillic](#agillic) ---  [Visual Dialogue](#visual-dialogue) 
+-- [General Issues](#general-issues) 
 
 <!-- []() []() []()  -->
 
