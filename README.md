@@ -2,7 +2,7 @@
 A collection of useful information and code for email development
 
 [Gmail](#Gmail)  ---  [Outlook](#outlook) ---  [Agillic](#agillic) ---  [Visual Dialogue](#visual-dialogue) 
--- [General Issues](#general-issues) 
+-- [General Issues](#general-issues) --- 
 
 <!-- []() []() []()  -->
 
@@ -71,7 +71,7 @@ Gmail does read style tags, if certain criterias are met:
     }
 
 ## Outlook
-- - - - -
+- - - - - -
 
 ### Noteworthy
 
@@ -110,17 +110,168 @@ You can target iOS Outlook app with the `data-outlook-cycle` -atribute to the bo
         </body>
     </html>
 ``` 
+[Source](https://litmus.com/community/discussions/7660-targeting-outlook-app-on-android-and-ios)
 
 `[data-outlook-cycle*="INSERT_STYLES"]` will target only Microsoft email addresses @hotmail, @live, @outlook etc. on iOS. And only non Microsoft addresses on Android.
 #### Padding Issues
 ## Agillic
-- - - - -
-#### Noteworthy
+
+- - - - - -
+[Setup](#A1-Setup) - [Editable Content](#A2-Editable-Content)
+
+Agillic lets you code editable html moduels for designers to tweak and publish. The syntax used is read and formated through Agillics page and returns the varible code to common html. [source](https://developers.agillic.com/templates/email)
+
+### A1 Setup
+
+In order to restrict your template usage in Agillic you place a ``content`` meta tag in the head.
+
+```html
+    <meta name="agavailability" content="">
+```
+#### Types
+
+- email - Restrict the template to be used for the creation of emails
+- portal - Restrict the template to be used for the creation of web portals
+- print - Restrict the template to be used for the creation of print files
+- inactive - Disable the template and mark as unavailable for the configurator
+  
+#### From and Personal From
+
+From and Personal from can be inserted by adding ``<from>`` and ``<personalfrom>`` tags. These tags allows you to preset an email address, from which the email will be sent from and can be replied to. And let's you customize a name to be preset as sender. You can also insert Person Data or Global Data.
+```html
+    <head>
+        <from>serviceteam@company.com</from>
+        <personalfrom>Service Team</personalfrom>
+    </head>
+```
+```html
+    <head>
+        <from>serviceteam@company.com</from>
+        <personalfrom><persondata>COMPANY_REP</persondata></personalfrom>
+    </head>
+```
+#### Blocks
+
+Agillic builds content out of ``Content Blocks`` within the template and it is within these blocks your configurators place their content. Anything that is editable by the Agillic Content Editor has to be placed inside a block which there are two different types of. 
+
+- agblock - A static block. Locked in place and cannot be placed anywhere else. Often used for Footer and Header.
+- agblockgroup - Used to contain agrepeatingblock and nothing else.
+- agrepeatingblock - Similar functionality as agblock but agrepeatingblock can be copied and placed anywhere inside an agblockgroup.
+
+agblockgroup and agrepeatingblock is your go to method for creating dynamic content in your template.
+
+```html
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td agblock="on">Best Brand</td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td agblockgroup="on">
+                <table agrepeatingblock="on" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>Block 1</td>
+                    </tr>
+                </table>
+                <table agrepeatingblock="on" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>Block 2</td>
+                    </tr>
+                </table>
+                <table agrepeatingblock="on" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>Block 3</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td agblock="">Copyright © Best Brand</td>
+        </tr>
+    </table>
+```
+### A2-Editable content
+
+To make content editable elements in Content Editor us
+
+`ageditable`
+
+These are your options to control the WYSIWYG elements in the Content Designer.: 
+
+|   syntax            |   Meaning	                        |syntax                 |   Meaning                             |
+|---                  |---                                  |--                     |---                                    |
+|                     |   Empty will disable the WYSIWYG    |  ``font_face``        |   Enables standard web safe font faces|
+|   ``*``             |   Will allow everything             |  ``font_size``        |   Enables font sizes                  |
+|   ``"bold"``        |   Enables bold text                 |  ``indent``           |   Enables text indent                 |
+|   ``italic``	      |   Enables italic text               |  ``outdent``          |   Enables text outdent                |
+|   ``underline``     |   Enables underlined text           |  ``ordered_list``     |   Enables ordered lists               |
+|   ``align_justify`` |   Enables justified text alignment  |  ``unordered_list``   |   Enables unordered lists             |
+|   ``align_right``   |   Enables right text alignment      |  ``paragraph_styles`` |   Enables h1 to h6 and p              |
+|   ``align_center``  |   Enables center text alignment     |  ``font_color``       |   Enables a color palette for text    |
+|   ``align_left``    |   Enables left text alignment       |
+
+``WYSIWYG`` = What You See Is What You Get
+
+```html
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td ageditable="image"><img src="banner.jpg"></td>
+    </tr>
+    <tr>
+        <td ageditable="">Headline</td>
+    </tr>
+    <tr>
+        <td ageditable="bold,italic,underline">Lorem ipsum dolor sit amet</td>
+    </tr>
+    <tr>
+        <td ageditable="hyperlink"><a href="#">Read more</a></td>
+    </tr>
+</table>
+```
+#### Links or hyperlinks
+
+The following two are not used in conjunction with the WYSIWYG. They are used to let Agillic know what kind of content are inside the ageditable. Whenever you have an image you use ageditable="image" and whenever you have a standalone link, like at CTA you use ageditable="hyperlink".
+
+#### Restrict font & colors
+
+You can restrict the choices in ``font_face``, ``font_size`` and ``paragraph_styles``. However this is done in the head with the use of meta tags. Like this :
+
+-   ```html
+        <!--  Contains list of comma separated font names.--> 
+        <meta name="restrict-font" content="Arial,Verdana,Tahoma">
+    ``` 
+-   ```html
+        <!--  Contains list of comma separated numeric sizes. Values starts from 8pt which equals size "1" in the editor. 8pt=1, 10pt=2, 12pt=3 etc. Values less than 8 will be ignored. --> 
+        <meta name="restrict-font-size" content="2,4,6,8,10,12">
+    ```  
+-   ```html
+        <!--  Contains list of comma separated hex or (#CCCCC) or RGB (rgb(680,255,0)) colors. Both types can be added in the tag together. There are no restrictions and any wrong color will be interpreted as black. --> 
+       <meta name="restrict-font-color" content="#ffffff,rgb(20,120,170),#cccccc">
+    ```     
+
+ or `parameters`
+
+
+
+Example
+
+1.  
+
+### Agillic specific code
+
+
+
+
+### Noteworthy
+
 ## Visual Dialogue
-- - - - -
+- - - - - -
 #### Noteworthy
 ## General Issues
- - - - -
+ - - - - - -
 
-[]() 
+
 <!-- []()  -->
