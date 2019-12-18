@@ -117,9 +117,9 @@ You can target iOS Outlook app with the `data-outlook-cycle` -atribute to the bo
 ## Agillic
 
 - - - - - -
-[Setup](#A1-Setup) - [Editable Content](#A2-Editable-Content)
+[Setup](#A1-Setup) - [Editable Content](#A2-Editable-Content) - [Parameters](#A3-Parameters)
 
-Agillic lets you code editable html moduels for designers to tweak and publish. The syntax used is read and formated through Agillics page and returns the varible code to common html. [source](https://developers.agillic.com/templates/email)
+Agillic lets you code editable html moduels for designers to tweak and publish.  [source](https://developers.agillic.com/templates/email)
 
 ### A1 Setup
 
@@ -252,13 +252,77 @@ You can restrict the choices in ``font_face``, ``font_size`` and ``paragraph_sty
        <meta name="restrict-font-color" content="#ffffff,rgb(20,120,170),#cccccc">
     ```     
 
- or `parameters`
+### A3-Parameters
+Making a parameter enables an interface on a block that is available whenever you click the i-icon (in Agillic) of a block. When setting up a template you can work with two types of parameters. Template parameters and Block paramenters.
+
+TThe syntax used is read and formated through Agillics page and returns the varible code to common html. Meaning only Agillic understands the code.
+
+```
+    ${scope:namespace::name|TYPE|default_value}
+```
+Scope can be either: ``templateparam``,  ``blockparam`` or ``ref``.
+
+``Namespace`` is the Label of several Settings and is yours to define. ``Name`` is the Name of a setting.
 
 
 
-Example
+|   ``TYPE``        |   Meaning                                                                               |
+|---                |---                                                                                      |
+|   ``IMAGE``       |   Enable the media browser interface                                                    |
+|   ``COLOR``       |   Restrict available colors, and enable the default color picker interface              |
+|   ``LINK``        |   Enable the link editor interface                                                      |
+|   ``STRING``      |   You enable the configurator to type in anything.                                      |
+|   ``INTEGER``     |   Whole numbers and presents an easy function to increase of decrease the number.       |
+|   ``NUMBER``      |   Any type of numbers and presents an easy function to increase of decrease the number. |
 
-1.  
+``default_value`` is the default value of the parameter. You can also create options to choose from. That is done with enclosing brackets and semicolon as seperator:
+
+-    ``[#000000;#ffffff] ``
+
+```
+    ${blockparam:Button::Font\_Color|COLOR|[#000000;#ffffff]}
+```
+
+<br>
+
+Example of each parameter type:
+
+```
+    ${templateparam:Body::Background_Color|COLOR|#ffffff}
+    ${blockparam:Button::Font_Color|COLOR|#ffffff}
+    ${ref:Button::Font_Color}
+```
+
+Templateparam will be settings on template level, Blockparam will be settings on block level and Ref will be a reference and a direct copy of either a template- or block param.
+
+all together, it might look like this:
+```html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta property="og:url" content="webcopy://show" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="${templateparam:Share::Title|STRING|When Great Minds Don’t Think Alike}" />
+        <meta property="og:description" content="${templateparam:Share::Description|STRING|How much does culture influence creative thinking?}" />
+        <meta property="og:image" content="${templateparam:Share::Image|IMAGE|http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg}" />
+    </head>
+    <body>
+        <table border="0" cellspacing="0" cellpadding="0" role="presentation" agblock="on" align="center">
+            <tr>
+                <td align="center" style="padding: ${blockparam:Block::Padding|INTEGER|20}px; background-color: ${blockparam:Block::Background_Color|COLOR|[#ffffff;#cccccc]}">
+                    <table width="600" border="0" cellspacing="0" cellpadding="0" role="presentation">                              
+                        <tr>
+                            <td align="${blockparam:Link::Text_Align|STRING|[left;center;right]}" style="font-family: Arial; color: ${blockparam:Link::Font_Color|COLOR|#000000}; font-size: ${blockparam:Link::Font_Size|INTEGER|12}px; line-height: ${blockparam:Link::Line_Height|NUMBER|1.5};">
+                                <a href="${blockparam:Link::URL|LINK|http://www.agillic.com/}" style="color: ${ref:Link::Font_Color}">${blockparam:Link::Text|STRING|Lorem ipsum dolor sit amet}</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+```
 
 ### Agillic specific code
 
