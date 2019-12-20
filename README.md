@@ -1,7 +1,7 @@
 # email_dev
 A collection of useful information and code for email development
 
-[Gmail](#Gmail)  ---  [Outlook](#outlook) ---  [Agillic](#agillic) ---  [Visual Dialogue](#visual-dialogue) 
+[Gmail](#Gmail)  ---  [Outlook](#outlook) ---  [Agillic](#agillic) ---  [Visual Dialogue](#visual-dialogue-portrait) 
 -- [General Issues](#general-issues) --- 
 
 <!-- []() []() []()  -->
@@ -324,17 +324,49 @@ all together, it might look like this:
 </html>
 ```
 
-### Agillic specific code
-
-
-
-
-### Noteworthy
-
-## Visual Dialogue
+## Visual Dialogue Portrait
 - - - - - -
+[IMPORTANT for first time users!!]()
+
+
+Visual dialogue Portrai email development is mainly split into two programs:
+
+| ``Name``&zwnj;&nbsp;   | ``Purpose`` | ``Access`` |
+| --- | --- | --- |
+| ``Visual``&zwnj;&nbsp;``Dialogue`` | Compose emails in Master templates and send emails | Developers and composers/customers |
+| ``Dialogue``&zwnj;&nbsp;``Admin`` | Creating  email components | Developers |
+
+
+An explanation for different parts of ``Visual Dialogue``
+
+| `Name`| description| usage |
+| --- | --- | --- |
+| Master&zwnj;&nbsp;Template| A main template working as a framewor for message templates. | Used in all mail and for components that will repeat across multiple emails, like header, footer and style|
+| Message&zwnj;&nbsp;Template| The setup for mails that are sent. Uses a master template as a platform and imports components from ``Dialgue Admin``| Used for a single mail or as a template for multiple mails using the same components |
+| |||
+| |||
+| |||
+| |||
+
+  
+Visual Dialog is the main component where emails are composed and sent and is used by both developer, while Visual
 #### Noteworthy
 ## General Issues
+
+## Important
+
+First time users of Visual Dialog when receiving a new Portrait account:
+
+1. Open `Visual Dialogue`.
+2. Access a domain, any will do.
+3. Go to ``Options``. If already inside Visual Dialogue, it is the blue button to the left of Home.
+4. Go to ``Message Designer``.
+5. ``HTML message template`` NEEDS to be "Open in Source View" and NOT "Open in Design View"
+6. ``Emarketing mail templates`` set to "Open in integrated designer" with "Use old style dialog to selectpublished files" checked.
+7. ``Apply`` and close
+
+
+This is to avoid Portrait from breaking HTML code when it opens  an html file.
  - - - - - -
 
 
