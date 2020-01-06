@@ -125,7 +125,7 @@ Conditional Logic allows you to create expressions targeting multiple Outlook ve
 |``lt``	|less than	|``<!--[if lt mso 14]> Everything below Outlook 2010 <![endif]-->``|
 |``gte``	|greater than or equal to	|``<!--[if gte mso 14]> Outlook 2010 and above <![endif]-->``|
 |``lte``	|less than or equal to|``<!--[if lte mso 14]> Outlook 2010 and below <![endif]-->``|
-| `|`	|or	|``<!--[if (mso 12)\|(mso 16)]> Outlook 2007 / 2016 only <![endif]-->``|
+| `|`	|or	|``<!--[if (mso 12)``\|``(mso 16)]> Outlook 2007 / 2016 only <![endif]-->``|
 |``!``	|not	|``<!--[if !mso]><!--> All Outlooks will ignore this <!--<![endif]-->``|
 
 #### iOS Outlook app
