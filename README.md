@@ -16,7 +16,7 @@ information regarding specific DE's development environments such as visual dial
 
 #### Gmail targeting
 
-Sometimes gmail will overwrite the width you have set for mobile.
+Sometimes gmail will overwrite the width you have set for mobile. This will negate that by giving gmail a set width for mobile.
 
 ```css
     @media only screen and (min-width: 480px) {
@@ -83,7 +83,50 @@ Use `table` , `tr` and `td/th` to create the layout for  Outlook.
 ### Targeting Outlook
 #### Web and Desktop
 
-Targeting outlook in body can be done with `<!--if(mso)  -->`
+Targeting outlook in body can be done with `<!--if(mso) >` and closes with``<![endif]-->``
+
+For  Example:
+
+```html
+<!--[if mso]>
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td width="340">
+<![endif]-->
+    <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
+        Outlook can’t render the CSS in this DIV but other email clients can,
+        so we wrap this in a ghost table that replicates the DIV’s desktop style.
+        In this case, a container 340px wide.
+    </div>
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->
+```
+
+Different Outlook versions can be targeted by using Microsoft Office Version numbers: 
+
+| `Outlook version(s)` | Code |
+| --- | --- |
+| Outlook 2000  |``<!--[if mso 9]> your code <![endif]-->``|
+|Outlook 2002	|``<!--[if mso 10]> your code <![endif]-->``|
+|Outlook 2003	|``<!--[if mso 11]> your code <![endif]-->``|
+|Outlook 2007	|``<!--[if mso 12]> your code <![endif]-->``|
+|Outlook 2010	|``<!--[if mso 14]> your code <![endif]-->``|
+|Outlook 2013	|``<!--[if mso 15]> your code <![endif]-->``|
+|Outlook 2016	|``<!--[if mso 16]> your code <![endif]-->``|
+
+Conditional Logic allows you to create expressions targeting multiple Outlook version: 
+
+| Code	| Description |	Example |
+| ---| ---| ---|
+|``gt``	| greater than	|``<!--[if gt mso 14]> Everything above Outlook 2010 <![endif]-->``|
+|``lt``	|less than	|``<!--[if lt mso 14]> Everything below Outlook 2010 <![endif]-->``|
+|``gte``	|greater than or equal to	|``<!--[if gte mso 14]> Outlook 2010 and above <![endif]-->``|
+|``lte``	|less than or equal to|``<!--[if lte mso 14]> Outlook 2010 and below <![endif]-->``|
+| `|`	|or	|``<!--[if (mso 12)\|(mso 16)]> Outlook 2007 / 2016 only <![endif]-->``|
+|``!``	|not	|``<!--[if !mso]><!--> All Outlooks will ignore this <!--<![endif]-->``|
 
 #### iOS Outlook app
 You can target iOS Outlook app with the `data-outlook-cycle` -atribute to the body tag.
@@ -114,6 +157,12 @@ You can target iOS Outlook app with the `data-outlook-cycle` -atribute to the bo
 
 `[data-outlook-cycle*="INSERT_STYLES"]` will target only Microsoft email addresses @hotmail, @live, @outlook etc. on iOS. And only non Microsoft addresses on Android.
 #### Padding Issues
+
+```html
+<td style=”padding: 20px;”>
+```
+``<td>`` padding is generally safe as long as you’re not setting a width property or attribute. Outlook 2007 and 2010 will convert your width pixels to points,
+
 ## Agillic
 
 - - - - - -
@@ -201,7 +250,7 @@ To make content editable elements in Content Editor us
 
 These are your options to control the WYSIWYG elements in the Content Designer.: 
 
-|   syntax            |   Meaning	                        |syntax                 |   Meaning                             |
+|   syntax            |   Meaning                           |syntax                 |   Meaning                             |
 |---                  |---                                  |--                     |---                                    |
 |                     |   Empty will disable the WYSIWYG    |  ``font_face``        |   Enables standard web safe font faces|
 |   ``*``             |   Will allow everything             |  ``font_size``        |   Enables font sizes                  |
@@ -217,20 +266,21 @@ These are your options to control the WYSIWYG elements in the Content Designer.:
 
 ```html
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-        <td ageditable="image"><img src="banner.jpg"></td>
-    </tr>
-    <tr>
-        <td ageditable="">Headline</td>
-    </tr>
-    <tr>
-        <td ageditable="bold,italic,underline">Lorem ipsum dolor sit amet</td>
-    </tr>
-    <tr>
-        <td ageditable="hyperlink"><a href="#">Read more</a></td>
-    </tr>
-</table>
+        <tr>
+            <td ageditable="image"><img src="banner.jpg"></td>
+        </tr>
+        <tr>
+            <td ageditable="">Headline</td>
+        </tr>
+        <tr>
+            <td ageditable="bold,italic,underline">Lorem ipsum dolor sit amet</td>
+        </tr>
+        <tr>
+            <td ageditable="hyperlink"><a href="#">Read more</a></td>
+        </tr>
+    </table>
 ```
+
 #### Links or hyperlinks
 
 The following two are not used in conjunction with the WYSIWYG. They are used to let Agillic know what kind of content are inside the ageditable. Whenever you have an image you use ageditable="image" and whenever you have a standalone link, like at CTA you use ageditable="hyperlink".
@@ -336,22 +386,33 @@ Visual dialogue Portrai email development is mainly split into two programs:
 | ``Visual``&zwnj;&nbsp;``Dialogue`` | Compose emails in Master templates and send emails | Developers and composers/customers |
 | ``Dialogue``&zwnj;&nbsp;``Admin`` | Creating  email components | Developers |
 
+### Visual Dialogue
 
 An explanation for different parts of ``Visual Dialogue``
 
 | `Name`| description| usage |
 | --- | --- | --- |
 | Master&zwnj;&nbsp;Template| A main template working as a framewor for message templates. | Used in all mail and for components that will repeat across multiple emails, like header, footer and style|
-| Message&zwnj;&nbsp;Template| The setup for mails that are sent. Uses a master template as a platform and imports components from ``Dialgue Admin``| Used for a single mail or as a template for multiple mails using the same components |
-| |||
-| |||
-| |||
+| Message&zwnj;&nbsp;Template| The setup for mails that are sent. Uses a master template as a platform and imports components from ``Dialogue Admin``.| Used for a single mail or as a template for multiple mails using the same components |
 | |||
 
-  
 Visual Dialog is the main component where emails are composed and sent and is used by both developer, while Visual
+
+#### Importing images
+
+Publishing images in Portrait makes them available to be used in emails for all users of the domain.
+
+``[PC and other external desktop user]:``
+
+1. To import images you first drag or copy the images over from your computer.
+2. Open `Visual Dialogue`, go to ``Explore`` and create/find the folder you want to place the images.
+3. Right click>New>Published Files and find where you placed them on the external desktop.
+
+``[MAC]``
+
+Skip step `1` and just use the location in finder.
+
 #### Noteworthy
-## General Issues
 
 ## Important
 
@@ -368,6 +429,6 @@ First time users of Visual Dialog when receiving a new Portrait account:
 
 This is to avoid Portrait from breaking HTML code when it opens  an html file.
  - - - - - -
-
+## General Issues
 
 <!-- []()  -->
