@@ -387,7 +387,9 @@ all together, it might look like this:
 - - - - - -
 [Full documentation](https://www.pitneybowes.com/content/dam/support/software/product-documentation/public/portrait-dialogue/v6-1-0/en-us/portrait-dialogue-v6-1-0-visual-dialogue-user-guide.pdf)
 
-[IMPORTANT for first time users!!]()
+[IMPORTANT for first time users!!](##_Important)
+
+[ColorPalette](####_Custom-Color-Palettes)
 
 
 Visual dialogue Portrai email development is mainly split into two programs:
