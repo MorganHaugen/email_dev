@@ -407,7 +407,7 @@ An explanation for different parts of ``Visual Dialogue``
 | Message&zwnj;&nbsp;Template| The setup for mails that are sent. Uses a master template as a platform and imports components from ``Dialogue Admin``.| Used for a single mail or as a template for multiple mails using the same components |
 | |||
 
-Visual Dialog is the main component where emails are composed and sent and is used by both developer, while Visual
+Visual Dialog is the main component where emails are composed and sent and is used by both developer, while Visual Admin is used only by developers to create modules that can be placed into message templates and other related tasks.
 
 #### HTML CSS support
 
@@ -417,12 +417,11 @@ Since some email clients do not support CSS defined in the `<style>` tags, Visua
 | --- | --- |
 |`<style type="text/css">` |  Default—moves all CSS inline.|
 | `<style type="text/css" inlinemode="MoveInline">` | Same as default—moves all CSS inline.|
-|`<style type="text/css" inlinemode="CopyInline">` |Copies all CSS inline | 
+|`<style type="text/css" inlinemode="CopyInline">` |Copies all CSS inline |
 | `<style type="text/css" inlinemode="None">`| Does not do anything—leave the ``<style>`` tag as it is|
 
-#### Custom Color Palettes
 
-Colors that are declared in ``Style sheet defs``, will be available in the master template and subsequently in the message templates when editing modules. 
+
 
 #### Importing images
 
@@ -437,6 +436,26 @@ Publishing images in Portrait makes them available to be used in emails for all 
 ``[MAC]``
 
 Skip step `1` and just use the location in finder.
+### Dialogue Admin
+
+Dialogue Admin consists of several server hosts, each with multiple firms connected to it. Each firm also has their own folder where all the resources you will need is placed, or will be placed by you.
+
+#### Dialogue Server Hosts
+
+The four servers are called BDN-PORT-AP1, BDN-PORT-AP2, BDN-PORT-AP3 and BDN-PORT-AP4.
+If they do not show up, they can be accessed by Pressing the `Dialogue Server Host`, then right clicking and `new` and type the server name in the `Computer name` field.
+
+#### Misc. System Data
+
+The folder where all the modules we create are located, is at ``(FirmName)-> General Admin -> Misc. system data - Emarketing mail definitions -> Body area item defs``
+
+If you cant find the `Misc. system data` folder, it is most likely hidden and can be revealed by going to `View` in the top ribbon and checking System Data.
+
+#### Custom Color Palettes
+
+Colors that are declared in ``Style sheet defs`` on the same level as ``Bode area item defs``, will be available in the master template and subsequently in the message templates when editing modules. 
+
+To add a color palette, right click and create a new class and write in CSS the color/colors you want to declare. Save. In message template refresh (f5) and reapply master template (ctrl+f6). This should now apply as an option in the text editor of the modules, both in foreground color and background color. 
 
 #### Noteworthy
 
