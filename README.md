@@ -389,7 +389,6 @@ all together, it might look like this:
 
 [IMPORTANT for first time users!!](#important)
 
-[ColorPalette](#custom-color-palettes)
 
 Visual dialogue Portrai email development is mainly split into two programs:
 
@@ -454,7 +453,7 @@ If you cant find the `Misc. system data` folder, it is most likely hidden and ca
 
 #### Custom Color Palettes
 
-Colors that are declared in ``Style sheet defs`` on the same level as ``Bode area item defs``, will be available in the master template and subsequently in the message templates when editing modules. 
+Colors that are declared in ``Style sheet defs`` on the same level as ``Body area item defs``, will be available in the master template and subsequently in the message templates when editing modules. 
 
 To add a color palette, right click and create a new class and write in CSS the color/colors you want to declare. Save. In message template refresh (f5) and reapply master template (ctrl+f6). This should now apply as an option in the text editor of the modules, both in foreground color and background color. 
 
