@@ -4,6 +4,7 @@ A collection of useful information and code for email development
 [Gmail](#Gmail)  ---  [Outlook](#outlook) ---  [Agillic](#agillic) ---  [Visual Dialogue](#visual-dialogue-portrait) 
 -- [General Issues](#general-issues) --- 
 
+Coming soon: `Selligent`  - `Adobe Marketing Cloud` - `Salesforce`
 <!-- []() []() []()  -->
 
 ## Introduction
@@ -105,6 +106,7 @@ For  Example:
 <![endif]-->
 ```
 
+
 Different Outlook versions can be targeted by using Microsoft Office Version numbers: 
 
 | `Outlook version(s)` | Code |
@@ -127,6 +129,9 @@ Conditional Logic allows you to create expressions targeting multiple Outlook ve
 |``lte``	|less than or equal to|``<!--[if lte mso 14]> Outlook 2010 and below <![endif]-->``|
 | ` `\|` `	|or	|``<!--[if (mso 12)``\|``(mso 16)]> Outlook 2007 / 2016 only <![endif]-->``|
 |``!``	|not	|``<!--[if !mso]><!--> All Outlooks will ignore this <!--<![endif]-->``|
+
+[Source](https://stackoverflow.design/email/base/mso)
+
 
 #### iOS Outlook app
 You can target iOS Outlook app with the `data-outlook-cycle` -atribute to the body tag.
@@ -158,10 +163,14 @@ You can target iOS Outlook app with the `data-outlook-cycle` -atribute to the bo
 `[data-outlook-cycle*="INSERT_STYLES"]` will target only Microsoft email addresses @hotmail, @live, @outlook etc. on iOS. And only non Microsoft addresses on Android.
 #### Padding Issues
 
+
 ```html
 <td style=”padding: 20px;”>
 ```
-``<td>`` padding is generally safe as long as you’re not setting a width property or attribute. Outlook 2007 and 2010 will convert your width pixels to points,
+``<td>`` padding is generally safe as long as you’re not setting a width property or attribute. Outlook 2007 and 2010 will convert your width pixels to points.
+
+
+[Source](https://www.emailonacid.com/blog/article/email-development/7_tips_and_tricks_regarding_margins_and_padding_in_html_emails/)
 
 ## Agillic
 
@@ -376,6 +385,8 @@ all together, it might look like this:
 
 ## Visual Dialogue Portrait
 - - - - - -
+[Full documentation](https://www.pitneybowes.com/content/dam/support/software/product-documentation/public/portrait-dialogue/v6-1-0/en-us/portrait-dialogue-v6-1-0-visual-dialogue-user-guide.pdf)
+
 [IMPORTANT for first time users!!]()
 
 
@@ -390,13 +401,28 @@ Visual dialogue Portrai email development is mainly split into two programs:
 
 An explanation for different parts of ``Visual Dialogue``
 
-| `Name`| description| usage |
+| `Name`| ``Description``| ``Usage`` |
 | --- | --- | --- |
-| Master&zwnj;&nbsp;Template| A main template working as a framewor for message templates. | Used in all mail and for components that will repeat across multiple emails, like header, footer and style|
+| Master&zwnj;&nbsp;Template| A main template working as a framework for message templates. | Used in all mail and for components that will repeat across multiple emails, like header, footer and style|
 | Message&zwnj;&nbsp;Template| The setup for mails that are sent. Uses a master template as a platform and imports components from ``Dialogue Admin``.| Used for a single mail or as a template for multiple mails using the same components |
 | |||
 
 Visual Dialog is the main component where emails are composed and sent and is used by both developer, while Visual
+
+#### HTML CSS support
+
+Since some email clients do not support CSS defined in the `<style>` tags, Visual dialog has made several options to move all the css inline. This can be useful or detrimental depending on how you apply it. 
+
+| Style tag definition | Description |
+| --- | --- |
+|`<style type="text/css">` |  Default—moves all CSS inline.|
+| `<style type="text/css" inlinemode="MoveInline">` | Same as default—moves all CSS inline.|
+|`<style type="text/css" inlinemode="CopyInline">` |Copies all CSS inline | 
+| `<style type="text/css" inlinemode="None">`| Does not do anything—leave the ``<style>`` tag as it is|
+
+#### Custom Color Palettes
+
+Colors that are declared in ``Style sheet defs``, will be available in the master template and subsequently in the message templates when editing modules. 
 
 #### Importing images
 
