@@ -23,7 +23,7 @@ information regarding specific DE's development environments such as visual dial
 Sometimes gmail will overwrite the width you have set for mobile. This will negate that by giving gmail a set width for mobile.
 
 ```css
-@media only screen and (min-width: 480px) {
+@media only screen and (max-width: 480px) {
 .gmailDeviceWidth{
         letter-spacing: 476px;
         line-height: 0;
@@ -437,6 +437,17 @@ Since some email clients do not support CSS defined in the `<style>` tags, Visua
 | `<style type="text/css" inlinemode="None">`| Leaves the ``<style>`` tag as it is, does NOT move it inline|
 
 When compiling, Portrait only moves styles that are used inline, and deletes the rest, to save space.
+#### Merge fields
+
+Merge fields lets you use a generic term like "firstName" in place of the actual persons name, that will be substituted later for a name from the database matching the merge field.
+
+
+``Hei, «Fornavn»!`` will for example be replaced with `Hei, Peter!` for a more personal email.
+
+Merge fields can be found in the text editor portrait, marked with an `«a»` symbol. Here all the different available fields are listed for the current domain.
+
+The `«»` tags won't work inside another `«»` tag, and will cause the code to break. It might still compile the inner merge field, but breaking the outer tag. 
+
 
 #### Importing images
 
